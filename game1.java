@@ -1,6 +1,6 @@
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-public class practice {
+public class game1 {
     public static void main(String[] arg) {
         //킬더킹
         Scanner Scan = new Scanner(System.in);
