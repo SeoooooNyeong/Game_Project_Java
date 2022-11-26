@@ -1,5 +1,6 @@
+// 점수 시스템(마신 물 개수 계속 출력하게끔)
 import java.util.*;
-class game3 {
+class   game3 {
     Random rand = new Random();
     Scanner Scan = new Scanner(System.in);
     String nextment;
@@ -15,6 +16,10 @@ class game3 {
     int breakwhile;
     static int player1score = 0;
     static int player2score = 0;
+
+    static int player1gamescore = 0;
+
+    static int player2gamescore = 0;
     String explainaion = "\n";
     void boxmaking() {
         for (int i = 0; i < 9; i++) {
@@ -48,17 +53,20 @@ class game3 {
         break1 = 0;
         playercnt += 1;
         if (playercnt == 1) {
+            nowscoreprint();
             nowbox();
             player1masilmulselect();
             player1false();
-            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("물")) {
+            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("\uD83D\uDEAB")) {
                 player1notrange();
                 nextment = Scan.nextLine();
+                nowscoreprint();
                 nowbox();
                 player1masilmulselect();
             }
         } else {
-            playertrue();
+
+            nowscoreprint();
             nowbox();
             player1masilmulselect();
             player1false();
@@ -68,28 +76,41 @@ class game3 {
             if (break1 == 1) {
                 return;
             }
-            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("물")) {
+            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("\uD83D\uDEAB")) {
                 nextment = Scan.nextLine();
+                player1false();
+                if (break1 == 1) {
+                    return;
+                }
                 player1notrange();
                 nextment = Scan.nextLine();
+                nowscoreprint();
                 nowbox();
                 player1masilmulselect();
             }
         }
+        player1true();
         nextment = Scan.nextLine();
         box[player1length-1][player1height-1] = "\uD83D\uDEAB";
         if (playercnt == 5) {
-            System.out.println("물을 마셨어요!");
-            nextment = Scan.nextLine();
+            player1true();
             System.out.println("player1은 독을 마시지 않았네요!");
+            nextment = Scan.nextLine();
+            System.out.println("player2가 마실 차례에요!");
             nextment = Scan.nextLine();
         }
     }
 
-    void playertrue() {
+    void player1true() {
         System.out.println("물을 마셨어요!");
         nextment = Scan.nextLine();
+        player1score += 1;
+    }
 
+    void player2true() {
+        System.out.println("물을 마셨어요!");
+        nextment = Scan.nextLine();
+        player2score += 1;
     }
 
     void player1false() {
@@ -97,11 +118,16 @@ class game3 {
             System.out.println("player1이 독을 마셨습니다. ㅠㅠ");
             System.out.println("player2 승!");
             breakwhile = 1;
-            player2score += 1;
+            player2gamescore += player2score;
+            gamescoreprint();
         }
         if (playercnt != 1) {
             if (player1length == 99 && player1height == 99) {
                 break1 = 1;
+                System.out.println("player1은 독을 마시지 않았네요!");
+                nextment = Scan.nextLine();
+                System.out.println("player2가 마실 차례에요!");
+                nextment = Scan.nextLine();
             }
         }
     }
@@ -133,17 +159,20 @@ class game3 {
         break1 = 0;
         playercnt += 1;
         if (playercnt == 1) {
+            nowscoreprint();
             nowbox();
             player2masilmulselect();
             player2false();
-            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("물")) {
+            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("\uD83D\uDEAB")) {
                 player2notrange();
                 nextment = Scan.nextLine();
+                nowscoreprint();
                 nowbox();
                 player2masilmulselect();
             }
         } else {
-            playertrue();
+
+            nowscoreprint();
             nowbox();
             player2masilmulselect();
             player2false();
@@ -153,20 +182,27 @@ class game3 {
             if (break1 == 1) {
                 return;
             }
-            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("물")) {
+            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("\uD83D\uDEAB")) {
                 nextment = Scan.nextLine();
+                player2false();
+                if (break1 == 1) {
+                    return;
+                }
                 player2notrange();
                 nextment = Scan.nextLine();
+                nowscoreprint();
                 nowbox();
                 player2masilmulselect();
             }
         }
+        player2true();
         nextment = Scan.nextLine();
         box[player2length-1][player2height-1] = "\uD83D\uDEAB";
         if (playercnt == 5) {
-            System.out.println("물을 마셨어요!");
-            nextment = Scan.nextLine();
+            player2true();
             System.out.println("player1은 독을 마시지 않았네요!");
+            nextment = Scan.nextLine();
+            System.out.println("player1이 마실 차례에요!");
             nextment = Scan.nextLine();
         }
     }
@@ -176,11 +212,15 @@ class game3 {
             System.out.println("player2이 독을 마셨습니다. ㅠㅠ");
             System.out.println("player1 승!");
             breakwhile = 1;
-            player1score += 1;
+            player1gamescore += player1score;
         }
         if (playercnt != 1) {
             if (player1length == 99 && player1height == 99) {
                 break1 = 1;
+                System.out.println("player2는 독을 마시지 않았네요!");
+                nextment = Scan.nextLine();
+                System.out.println("player1이 마실 차례에요!");
+                nextment = Scan.nextLine();
             }
         }
     }
@@ -204,6 +244,16 @@ class game3 {
         } else {
             System.out.println("player2가 이겼습니다!");
         }
+    }
+
+    void gamescoreprint() {
+        System.out.println("현재 스코어");
+        System.out.println(player1gamescore + " : " + player2gamescore);
+    }
+
+    void nowscoreprint() {
+        System.out.println("player1이 마신 물 개수 - " + player1score + "잔 ");
+        System.out.println("player2가 마신 물 개수 - " + player2score + "잔");
     }
 }
 
