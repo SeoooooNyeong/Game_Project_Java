@@ -1,326 +1,314 @@
-// 점수 시스템(현재 점수 출력하게끔)
-import javax.swing.*;
+package game;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-class   game3 {
-    Random rand = new Random();
-    Scanner Scan = new Scanner(System.in);
-    String nextment;
-    int player1length = 999;
-    int player1height = 999;
-    int player2length = 999;
-    int player2height = 999;
-    int poisonlength = rand.nextInt(9) + 1;
-    int poisonheight = rand.nextInt(9) + 1;
-    String[][] box = new String[9][9];
-    int playercnt = 0;
-    int break1;
-    int breakwhile;
-    static int player1score = 0;
-    static int player2score = 0;
+import java.util.Random;
+import java.util.Scanner;
 
-    static int player1gamescore = 0;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-    static int player2gamescore = 0;
-    String explainaion = "\n";
-    void boxmaking() {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                box[i][j] = "\uD83E\uDD5B";
-            }
-        }
-    }
+class Arrow {
+	String[] targetlist = { "\uD83C\uDF4E", "\uD83C\uDF4C", "\uD83C\uDF4A" };
+	String[] arrowlist = { "\uD83C\uDF4E", "\uD83C\uDF4C", "\uD83C\uDF4A" };
+	String arrow;
+	int arrowindex;
+	String target;
+	String arrowchange;
+	String explainaion = "\n";
+	String nextment;
+	Scanner Scan = new Scanner(System.in);
+	Random rand = new Random();
+	long player1time;
+	long player2time;
+	int numofmatchedarrow;
 
-    void start() {
-        System.out.print("안녕하세요! 독을 피해 물을 마셔라! 게임에 오신 것을 환영합니다!");
-        System.out.println(poisonlength + " " + poisonheight);
-        nextment = Scan.nextLine();
-        System.out.println("설명이 필요하시다면 GUI창의 yes을 눌러주세요!");
+	void start() {
+		System.out.print("안녕하세요! 같은 모양 화살로 과녁 맞추기! 게임에 오신 것을 환영합니다!");
+		nextment = Scan.nextLine();
 
-    }
+		System.out.println("게임을 시작합니다!");
+		nextment = Scan.nextLine();
+	}
 
-    void player1select() {
-        breakwhile = 0;
-        break1 = 0;
-        playercnt += 1;
-        if (playercnt == 1) {
-            nowscoreprint();
-            nowbox();
-            player1masilmulselect();
-            player1false();
-            if (breakwhile == 1) {
-                return;
-            }
-            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("\uD83D\uDEAB")) {
-                player1notrange();
-                nextment = Scan.nextLine();
-                nowscoreprint();
-                nowbox();
-                player1masilmulselect();
-            }
-        } else {
+	void maincode1() {
+		System.out.println("player1부터 시작합니다!");
+		try {
+			System.out.println("3");
+			Thread.sleep(1000);
+			System.out.println("2");
+			Thread.sleep(1000);
+			System.out.println("1");
+			Thread.sleep(1000);
+			System.out.println("시작");
+			long start = System.currentTimeMillis();
+			play();
+			long end = System.currentTimeMillis();
+			player1time = end - start;
+			System.out.println("player1이 걸린 시간은" + player1time + "입니다.");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
-            nowscoreprint();
-            nowbox();
-            player1masilmulselect();
-            player1false();
-            if (breakwhile == 1) {
-                return;
-            }
-            if (break1 == 1) {
-                return;
-            }
-            while (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1 || box[player1length-1][player1height-1].equals("\uD83D\uDEAB")) {
-                nextment = Scan.nextLine();
-                player1false();
-                if (break1 == 1) {
-                    return;
-                }
-                player1notrange();
-                nextment = Scan.nextLine();
-                nowscoreprint();
-                nowbox();
-                player1masilmulselect();
-            }
-        }
-        player1true();
-        nextment = Scan.nextLine();
-        box[player1length-1][player1height-1] = "\uD83D\uDEAB";
-        if (playercnt == 5) {
-            System.out.println("player1은 독을 마시지 않았네요!");
-            nextment = Scan.nextLine();
-            System.out.println("player2가 마실 차례에요!");
-            nextment = Scan.nextLine();
-        }
-    }
+	void maincode2() {
+		System.out.println("player2 시작합니다!");
+		try {
+			System.out.println("3");
+			Thread.sleep(1000);
+			System.out.println("2");
+			Thread.sleep(1000);
+			System.out.println("1");
+			Thread.sleep(1000);
+			System.out.println("시작");
+			long start = System.currentTimeMillis();
+			play();
+			long end = System.currentTimeMillis();
+			player2time = end - start;
+			System.out.println("player2가 걸린 시간은" + player2time + "입니다.");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		System.out.println();
+		System.out.println();
+		if (player2time > player1time)
+			System.out.println("player1이 이겼습니다.");
+		else if (player2time < player1time)
+			System.out.println("player2가 이겼습니다.");
+	}
 
-    void player1true() {
-        System.out.println("물을 마셨어요!");
-        nextment = Scan.nextLine();
-        player1score += 1;
-    }
+	void play() {
+		for (int i = 0; i < 10; i++) {
+			int a = rand.nextInt(3);
+			target = targetlist[a];
+			for (int j = 0; j < 10; j++) {
+				System.out.println();
+			}
+			System.out.println("  " + target + "\n");
+			arrowindex = 0;
+			arrow = arrowlist[arrowindex];
+			for (int m = 0; m < 8; m++) {
+				System.out.println();
+			}
+			System.out.print(" (•‿•)⎠⎞");
+			System.out.println(arrow);
+			while (true) {
+				arrowchange = Scan.nextLine();
+				if (arrowchange.equals("")) {
+					try {
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.print("⎛⎝(•‿•) ");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void player2true() {
-        System.out.println("물을 마셨어요!");
-        nextment = Scan.nextLine();
-        player2score += 1;
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.print(" (•‿•)⎠⎞");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void player1false() {
-        if (player1length == poisonlength && player1height == poisonheight) {
-            System.out.println("player1이 독을 마셨습니다. ㅠㅠ");
-            System.out.println("player2 승!");
-            breakwhile = 1;
-            player2gamescore += player2score;
-            player1score = 0;
-            player2score = 0;
-            gamescoreprint();
-        }
-        if (playercnt != 1) {
-            if (player1length == 99 && player1height == 99) {
-                break1 = 1;
-                System.out.println("player1은 독을 마시지 않았네요!");
-                nextment = Scan.nextLine();
-                System.out.println("player2가 마실 차례에요!");
-                nextment = Scan.nextLine();
-            }
-        }
-    }
-    void player1notrange() {
-        if (player1length > 9 || player1length < 1 || player1height > 9 || player1height < 1) {
-            System.out.println("범위를 벗어났습니다. \n다시 입력해주세요!");
-        } else {
-            System.out.println("빈병이에요,, \n다시 입력해주세요.");
-        }
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.print("⎛⎝(•‿•) ");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void nowbox() {
-        for (int l = 0; l < 9; l++) {
-            for (int k = 0; k < 9; k++) {
-                System.out.print(box[l][k] + " ");
-            }
-            System.out.println();
-        }
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.print(" (•‿•)⎠⎞");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void player1masilmulselect() {
-        System.out.print("player1 마실 물 위치 선택 : ");
-        player1length = Scan.nextInt();
-        player1height = Scan.nextInt();
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.print("⎛⎝(•‿•) ");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void player2select() {
-        breakwhile = 0;
-        break1 = 0;
-        playercnt += 1;
-        if (playercnt == 1) {
-            nowscoreprint();
-            nowbox();
-            player2masilmulselect();
-            player2false();
-            if (breakwhile == 1) {
-                return;
-            }
-            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("\uD83D\uDEAB")) {
-                player2notrange();
-                nextment = Scan.nextLine();
-                nowscoreprint();
-                nowbox();
-                player2masilmulselect();
-            }
-        } else {
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.print(" (•‿•)⎠⎞");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-            nowscoreprint();
-            nowbox();
-            player2masilmulselect();
-            player2false();
-            if (breakwhile == 1) {
-                return;
-            }
-            if (break1 == 1) {
-                return;
-            }
-            while (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1 || box[player2length-1][player2height-1].equals("\uD83D\uDEAB")) {
-                nextment = Scan.nextLine();
-                player2false();
-                if (break1 == 1) {
-                    return;
-                }
-                player2notrange();
-                nextment = Scan.nextLine();
-                nowscoreprint();
-                nowbox();
-                player2masilmulselect();
-            }
-        }
-        player2true();
-        nextment = Scan.nextLine();
-        box[player2length-1][player2height-1] = "\uD83D\uDEAB";
-        if (playercnt == 5) {
-            System.out.println("player2은 독을 마시지 않았네요!");
-            nextment = Scan.nextLine();
-            System.out.println("player1이 마실 차례에요!");
-            nextment = Scan.nextLine();
-        }
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println();
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.print("⎛⎝(•‿•) ");
+						System.out.println(arrow);
+						Thread.sleep(500);
 
-    void player2false() {
-        if (player2length == poisonlength && player2height == poisonheight) {
-            System.out.println("player2이 독을 마셨습니다. ㅠㅠ");
-            System.out.println("player1 승!");
-            breakwhile = 1;
-            player1gamescore += player1score;
-            player1score = 0;
-            player2score = 0;
-            gamescoreprint();
-        }
-        if (playercnt != 1) {
-            if (player2length == 99 && player2height == 99) {
-                break1 = 1;
-                System.out.println("player2는 독을 마시지 않았네요!");
-                nextment = Scan.nextLine();
-                System.out.println("player1이 마실 차례에요!");
-                nextment = Scan.nextLine();
-            }
-        }
-    }
-    void player2notrange() {
-        if (player2length > 9 || player2length < 1 || player2height > 9 || player2height < 1) {
-            System.out.println("범위를 벗어났습니다. \n다시 입력해주세요!");
-        } else {
-            System.out.println("빈병이에요,, \n다시 입력해주세요.");
-        }
-    }
+						System.out.println();
+						System.out.println();
+						System.out.println("  " + target);
+						System.out.println("   ↑");
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.println();
+						System.out.print(" (•‿•)⎠⎞");
+						System.out.println(arrow);
+						Thread.sleep(500);
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					if (arrow.equals(target)) {
+						try {
+							System.out.println("       ●●●●●●           ●●●         ●●●       ●●●●●●    ");
+							System.out.println("     ●        ●       ●     ●     ●     ●     ●     ●   ");
+							System.out.println("    ●                ●       ●   ●       ●    ●      ●  ");
+							System.out.println("    ●      ●●●●●     ●       ●   ●       ●    ●      ●  ");
+							System.out.println("    ●          ●     ●       ●   ●       ●    ●      ●  ");
+							System.out.println("     ●        ●       ●     ●     ●     ●     ●     ●   ");
+							System.out.println("       ●●●●●●●          ●●●         ●●●       ●●●●●●    ");
+							Thread.sleep(1000);
+						} catch (Exception e) {
+							System.out.println(e);
+						}
 
-    void player2masilmulselect() {
-        System.out.print("player2 마실 물 위치 선택 : ");
-        player2length = Scan.nextInt();
-        player2height = Scan.nextInt();
-    }
+						break;
+					} else {
+						System.out.println("    ●●●●●●●●          ●●●         ●●●●●●      ");
+						System.out.println("    ●       ●        ●   ●        ●     ●     ");
+						System.out.println("    ●       ●       ●     ●       ●      ●    ");
+						System.out.println("    ●●●●●●●●●      ●●●●●●●●●      ●      ●    ");
+						System.out.println("    ●       ●     ●         ●     ●      ●    ");
+						System.out.println("    ●       ●    ●           ●    ●     ●     ");
+						System.out.println("    ●●●●●●●●    ●             ●   ●●●●●●      ");
+						System.out.println();
+						System.out.println("잘못 발사했어요");
+					}
+				} else if (arrowchange.equals(" ")) {
+					arrowindex += 1;
+					if (arrowindex == 3) {
+						arrowindex = 0;
+					}
+					arrow = arrowlist[arrowindex];
+					for (int j = 0; j < 10; j++) {
+						System.out.println();
+					}
+					System.out.println("  " + target);
+					for (int m = 0; m < 8; m++) {
+						System.out.println();
+					}
+					System.out.print(" (•‿•)⎠⎞");
+					System.out.println(arrow);
 
-    void whowin() {
-        if (player1score > player2score) {
-            System.out.println("player1이 이겼습니다!");
-        } else {
-            System.out.println("player2가 이겼습니다!");
-        }
-    }
-
-    void gamescoreprint() {
-        System.out.println("현재 스코어");
-        System.out.println(player1gamescore + " : " + player2gamescore);
-    }
-
-    void nowscoreprint() {
-        System.out.println("player1이 마신 물 개수 - " + player1score + "잔 ");
-        System.out.println("player2가 마신 물 개수 - " + player2score + "잔");
-    }
+				}
+			}
+		}
+	}
 }
 
-class Detail2 extends JFrame {
-    Detail2() {
-        setTitle("화살 게임");
-        setSize(200, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel p = new JPanel();
-        JLabel l = new JLabel("설명이 필요하십니까?");
-        JButton b1 = new JButton("Yes");
-        JButton b2 = new JButton("No");
-        p.add(l);
-        p.add(b1);
-        p.add(b2);
-        add(p);
-        ActionListener l1 = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println();
-                System.out.println();
-                System.out.println("사과, 바나나, 오렌지가 그려져 있는 과녁이 랜덤하게 10번 나옵니다.\n플레이어는 과녁에 그려져 있는 그림과 같은 모양의 화살을 발사해야 합니다.\n과녁을 모두 부순 시간을 측정하여 더 빠른 시간 내에 과녁을 모두 부순 플레이어가 승리하게 됩니다.\n플레이어는 enter를 누를 시 화살을 발사할 수 있고 space+enter를 누르면 다음 모양의 화살로 변경할 수 있습니다.");
-                System.out.println();
-                System.out.println("Enter를 누르면 게임이 시작 됩니다");
-            }
-        };
-        b1.addActionListener(l1);
-        setVisible(true);
-    }
+class Detail extends JFrame {
+	Detail() {
+		setTitle("화살 게임");
+		setSize(200, 100);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JPanel p = new JPanel();
+		JLabel l = new JLabel("설명이 필요하십니까?");
+		JButton b1 = new JButton("Yes");
+		JButton b2 = new JButton("No");
+		p.add(l);
+		p.add(b1);
+		p.add(b2);
+		add(p);
+		ActionListener l1 = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println();
+				System.out.println();
+				System.out.println(
+						"사과, 바나나, 오렌지가 그려져 있는 과녁이 랜덤하게 10번 나옵니다.\n플레이어는 과녁에 그려져 있는 그림과 같은 모양의 화살을 발사해야 합니다.\n과녁을 모두 부순 시간을 측정하여 더 빠른 시간 내에 과녁을 모두 부순 플레이어가 승리하게 됩니다.\n플레이어는 enter를 누를 시 화살을 발사할 수 있고 space+enter를 누르면 다음 모양의 화살로 변경할 수 있습니다.");
+				System.out.println();
+				System.out.println("Enter를 누르면 게임이 시작됩니다");
+			}
+		};
+		ActionListener l2 = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println();
+				System.out.println();
+				System.out.println("Enter를 누르면 게임이 시작됩니다");
+			}
+		};
+		b1.addActionListener(l1);
+		b2.addActionListener(l2);
+		setVisible(true);
+	}
 }
 
-public class game3modify {
-    public static void main(String[] args) {
-        Scanner Scan = new Scanner(System.in);
-        Detail2 d = new Detail2();
-        game3 a = new game3();
-        a.start();
-        for (int kkk = 0; kkk < 3; kkk++) {
-            String nextment = Scan.nextLine();
-            System.out.println("게임 " + (kkk+1) + " 시작합니다.");
-            nextment = Scan.nextLine();
-            a.boxmaking();
-            outwhile : while (true) {
-                a.playercnt = 0;
-                for (int i = 0; i < 5; i++) {
-                    a.player1select();
-                    if (a.breakwhile == 1) {
-                        break outwhile;
-                    }
-                    if (a.break1 == 1) {
-                        break;
-                    }
-                }
-                a.playercnt = 0;
-                for (int i = 0; i < 5; i++) {
-                    a.player2select();
-                    if (a.breakwhile == 1) {
-                        break outwhile;
-                    }
-                    if (a.break1 == 1) {
-                        break;
-                    }
-                }
-            }
-            if (kkk == 2) {
-                a.whowin();
-            }
-        }
-    }
+public class practice2 {
+	public static void main(String[] args) {
+		Arrow game = new Arrow();
+		Detail d = new Detail();
+		game.start();
+		game.maincode1();
+		game.maincode2();
+	}
 }
