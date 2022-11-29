@@ -220,6 +220,7 @@ class maingame {
 public class practice2 {
     public static void main(String[] args) {
         maingame a = new maingame();
+        a.boardmaking();
         a.start();
         a.banmaking();
         while(true) {
