@@ -1,0 +1,35 @@
+package game;
+
+class Dice2 {
+	int ran;
+
+	void DiceNum() {
+		ran = (int) ((Math.random() * 6) + 1);
+		if (ran == 1) {
+			System.out.println("\u2680");
+		}
+		if (ran == 2) {
+			System.out.println("\u2681");
+		}
+		if (ran == 3) {
+			System.out.println("\u2682");
+		}
+		if (ran == 4) {
+			System.out.println("\u2683");
+		}
+		if (ran == 5) {
+			System.out.println("\u2684");
+		}
+		if (ran == 6) {
+			System.out.println("\u2685");
+		}
+	}
+
+}
+
+public class d {
+	public static void main(String[] args) {
+		Dice2 d = new Dice2();
+		d.DiceNum();
+	}
+}
