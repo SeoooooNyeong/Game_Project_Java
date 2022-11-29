@@ -1,4 +1,6 @@
 import java.util.*;
+
+
 public class practice2 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -77,151 +79,161 @@ public class practice2 {
             }
             a[k-1][l-1] = "\uD83D\uDEAB"; // 금지칸
         }
-        int r = 5;
-        int cnt1 = 0;
-        int cnt2 = 0;
+
+
         String direction1 = "";
         String direction2 = "";
-        while(cnt1 < 30) {
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    System.out.print(a[i][j]);
+        while (true) {
+            Dice2 d = new Dice2();
+            d.DiceNum();
+            for (int kkk = 0; kkk < d.ran; kkk++) {
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        System.out.print(a[i][j]);
+                    }
+                    System.out.println();
                 }
-                System.out.println();
-            }
-            System.out.println("용사 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
-            System.out.print("방향 입력 : ");
-            direction1 = in.next();
-            cnt1++;
-            if(direction1.equals("동")) {
-                if(y1 == 9) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt1--;
-                    continue;
-                }
-                if(a[x1][y1+1].equals("\uD83D\uDEAB")) { // 금지
-                    System.out.println("금지 구역이에요!");
-                    cnt1--;
-                    continue;
-                }
-                a[x1][y1] = "\uD83D\uDFE3";
-                y1++;
-                a[x1][y1] = "\u2B55";
-            } else if(direction1.equals("서")){
-                if(y1 == 0) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt1--;
-                    continue;
-                }
-                if(a[x1][y1-1].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt1--;
-                    continue;
-                }
-                a[x1][y1] = "\uD83D\uDFE3";
-                y1--;
-                a[x1][y1] = "\u2B55";
-            } else if(direction1.equals("남")) {
-                if(x1 == 9) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt1--;
-                    continue;
-                }
-                if(a[x1+1][y1].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt1--;
-                    continue;
-                }
-                a[x1][y1] = "\uD83D\uDFE3";
-                x1++;
-                a[x1][y1] = "\u2B55";
-            }else if(direction1.equals("북")) {
-                if(x1 == 0) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt1--;
-                    continue;
-                }
-                if(a[x1-1][y1].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt1--;
-                    continue;
-                }
-                a[x1][y1] = "\uD83D\uDFE3";
-                x1--;
-                a[x1][y1] = "\u2B55";
-            }else {
-                System.out.println("정확한 방향을 다시 입력해주세요.");
+                System.out.println("용사 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
+                System.out.print("방향 입력 : ");
                 direction1 = in.next();
-                cnt1--;
+                if(direction1.equals("동")) {
+                    if(y1 == 9) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x1][y1+1].equals("\uD83D\uDEAB")) { // 금지
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    y1++;
+                    a[x1][y1] = "\u2B55";
+                } else if(direction1.equals("서")){
+                    if(y1 == 0) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x1][y1-1].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    y1--;
+                    a[x1][y1] = "\u2B55";
+                } else if(direction1.equals("남")) {
+                    if(x1 == 9) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x1+1][y1].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    x1++;
+                    a[x1][y1] = "\u2B55";
+                }else if(direction1.equals("북")) {
+                    if(x1 == 0) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x1-1][y1].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    x1--;
+                    a[x1][y1] = "\u2B55";
+                }else {
+                    System.out.println("정확한 방향을 다시 입력해주세요.");
+                    direction1 = in.next();
+                }
             }
-        }
-        while(cnt2 < 3) {
-            System.out.println("몬스터 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
-            System.out.print("방향 입력 : ");
-            direction2 = in.next();
-            cnt2++;
-            if(direction2.equals("동")) {
-                if(y2 == 9) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt2--;
-                    continue;
-                }
-                if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt2--;
-                    continue;
-                }
-                a[x2][y2] = "\uD83D\uDFE3";
-                y2++;
-                a[x2][y2] = "\u26AB";
-            } else if(direction2.equals("서")){
-                if(y2 == 0) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt2--;
-                    continue;
-                }
-                if(a[x2][y2-1].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt2--;
-                    continue;
-                }
-                a[x2][y2] = "\uD83D\uDFE3";
-                y2--;
-                a[x2][y2] = "\u26AB";
-            } else if(direction2.equals("남")) {
-                if(x2 == 9) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt2--;
-                    continue;
-                }
-                if(a[x2+1][y2].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt2--;
-                    continue;
-                }
-                a[x2][y2] = "\uD83D\uDFE3";
-                x2++;
-                a[x2][y2] = "\u26AB";
-            }else if(direction2.equals("북")) {
-                if(x2 == 0) {
-                    System.out.println("갈 곳이 없어요!");
-                    cnt2--;
-                    continue;
-                }
-                if(a[x2-1][y2].equals("\uD83D\uDEAB")) {
-                    System.out.println("금지 구역이에요!");
-                    cnt2--;
-                    continue;
-                }
-                a[x2][y2] = "\uD83D\uDFE3";
-                x2--;
-                a[x2][y2] = "\u26AB";
-            }else {
-                System.out.println("정확한 방향을 다시 입력해주세요.");
+            d.DiceNum();
+            for (int i = 0; i < d.ran; i ++) {
+                System.out.println("몬스터 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
+                System.out.print("방향 입력 : ");
                 direction2 = in.next();
-                cnt2--;
+                if(direction2.equals("동")) {
+                    if(y2 == 9) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x2][y2] = "\uD83D\uDFE3";
+                    y2++;
+                    a[x2][y2] = "\u26AB";
+                } else if(direction2.equals("서")){
+                    if(y2 == 0) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x2][y2-1].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x2][y2] = "\uD83D\uDFE3";
+                    y2--;
+                    a[x2][y2] = "\u26AB";
+                } else if(direction2.equals("남")) {
+                    if(x2 == 9) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x2+1][y2].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x2][y2] = "\uD83D\uDFE3";
+                    x2++;
+                    a[x2][y2] = "\u26AB";
+                }else if(direction2.equals("북")) {
+                    if(x2 == 0) {
+                        System.out.println("갈 곳이 없어요!");
+                        continue;
+                    }
+                    if(a[x2-1][y2].equals("\uD83D\uDEAB")) {
+                        System.out.println("금지 구역이에요!");
+                        continue;
+                    }
+                    a[x2][y2] = "\uD83D\uDFE3";
+                    x2--;
+                    a[x2][y2] = "\u26AB";
+                }else {
+                    System.out.println("정확한 방향을 다시 입력해주세요.");
+                    direction2 = in.next();
+                }
             }
         }
-
     }
+}
+
+class Dice2 {
+    int ran;
+
+    void DiceNum() {
+        ran = (int) ((Math.random() * 6) + 1);
+        if (ran == 1) {
+            System.out.println("\u2680");
+        }
+        if (ran == 2) {
+            System.out.println("\u2681");
+        }
+        if (ran == 3) {
+            System.out.println("\u2682");
+        }
+        if (ran == 4) {
+            System.out.println("\u2683");
+        }
+        if (ran == 5) {
+            System.out.println("\u2684");
+        }
+        if (ran == 6) {
+            System.out.println("\u2685");
+        }
+    }
+
 }
