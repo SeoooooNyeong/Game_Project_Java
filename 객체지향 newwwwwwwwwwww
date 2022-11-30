@@ -120,8 +120,8 @@ class maingame {
                 playerscore += 1;
             } else {
                 monsterscore += 1;
+                playerheart -= 30;
             }
-            System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
         }else if(minigamecnt == 2) {
             MiniGame2.minigame2(null);
             a[x1][y1] = "\uD83D\uDFE3";
@@ -132,8 +132,8 @@ class maingame {
                 playerscore += 1;
             } else {
                 monsterscore += 1;
+                playerheart -= 30;
             }
-            System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
         }else if(minigamecnt == 3) {
             Minigame3.mini3main(null);
             minigamecnt = 0;
@@ -145,8 +145,19 @@ class maingame {
                 playerscore += 1;
             } else {
                 monsterscore += 1;
+                playerheart -= 30;
             }
-            System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+        }
+        heartzero();
+        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+        if (minigamecnt == 3) {
+            System.out.println("모든 미니게임을 플래이 하였어요!");
+            if (playerscore > monsterscore) {
+                System.out.println("몬스터가 이겼네요....");
+            } else {
+                System.out.println("용사가 이겼어요!!!");
+            }
+            System.exit(0);
         }
     }
 
@@ -158,6 +169,7 @@ class maingame {
         cnt -= 1;
         System.out.println("몬스터와 마주쳐 용사의 체력이 10 감소했어요...");
         System.out.println("남은 체력 : " + playerheart);
+        heartzero();
     }
 
     void whatplusminus() {
@@ -169,6 +181,14 @@ class maingame {
             x1++;
         } else if (direction1.equals("북")) {
             x1--;
+        }
+    }
+
+    void heartzero() {
+        if (playerheart <= 0) {
+            System.out.println("용사의 체력이 다 닳았어요....");
+            System.out.println("몬스터 승리!");
+            System.exit(0);
         }
     }
 
@@ -259,6 +279,8 @@ class maingame {
                 }
             }else {
                 System.out.println("정확한 방향을 다시 입력해주세요.");
+                nowboard();
+                System.out.print("방향입력 : ");
                 direction1 = in.next();
             }
         }
@@ -330,6 +352,8 @@ class maingame {
                 }
             }else {
                 System.out.println("정확한 방향을 다시 입력해주세요.");
+                nowboard();
+                System.out.print("방향입력 : ");
                 direction2 = in.next();
             }
         }
