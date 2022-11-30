@@ -1,4 +1,3 @@
-package Game;
 import java.util.*;
 class maingame {
     Scanner in = new Scanner(System.in);
@@ -8,6 +7,8 @@ class maingame {
     int x2=9, y2=9;
     String nextment = "\n";
     int playerheart = 100;
+    int playerscore;
+    int monsterscore;
     void boardmaking() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -15,7 +16,7 @@ class maingame {
             }
         }
         a[0][0] = "\u2B55"; // 플레이어 말
-        a[9][9] = "\u26AB"; // 몬스터 
+        a[9][9] = "\u26AB"; // 몬스터
         for (int i = 0; i < 10; i++) {
             int k = rand.nextInt(9)+1;
             int l = rand.nextInt(9)+1;
@@ -80,8 +81,17 @@ class maingame {
             a[k-1][l-1] = "\uD83D\uDEAB"; // 금지칸
         }
     }
+
+    void nowboard() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(a[i][j]);
+            }
+            System.out.println();
+        }
+    }
     void peopleplayermoving() {
-    	int minigamecnt = 0;
+        int minigamecnt = 0;
         String direction1 = "";
         Dice2 d = new Dice2();
         d.DiceNum();
@@ -90,12 +100,7 @@ class maingame {
             if (cnt == 0) {
                 break;
             }
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    System.out.print(a[i][j]);
-                }
-                System.out.println();
-            }
+            nowboard();
             System.out.println("용사 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
             System.out.print("방향 입력 : ");
             direction1 = in.next();
@@ -116,16 +121,47 @@ class maingame {
                     System.out.println("현재 플레이어 체력 : " + playerheart);
                 } else if (a[x1][y1+1].equals("\u26AB")) {
                     // 인간 체력감소, 말 따로 저장해놔
-                } else if(a[x1][y1+1].equals("\\u24BC")){
-                	minigamecnt ++;
-                	if(minigamecnt == 1) {
-                		Minigame1.mini1main(null);
-                	}else if(minigamecnt == 2) {
-                		MiniGame2.mimigame2(null);
-                	}else if(minigamecnt == 3) {
-                		Minigame3.mini3main(null);
-                		minigamecnt = 0;
-                	}
+                } else if(a[x1][y1+1].equals("\u24BC")){
+                    minigamecnt ++;
+                    if(minigamecnt == 1) {
+                        Minigame1.mini1main(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (FinalComparewith.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 2) {
+                        MiniGame2.minigame2(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (Arrow.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 3) {
+                        Minigame3.mini3main(null);
+                        minigamecnt = 0;
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (game3.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }
+
                 }
                 else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -148,15 +184,45 @@ class maingame {
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
                 }  else if(a[x1][y1-1].equals("\\u24BC")){
-                	minigamecnt ++;
-                	if(minigamecnt == 1) {
-                		Minigame1.mini1main(null);
-                	}else if(minigamecnt == 2) {
-                		MiniGame2.mimigame2(null);
-                	}else if(minigamecnt == 3) {
-                		Minigame3.mini3main(null);
-                		minigamecnt = 0;
-                	}
+                    minigamecnt ++;
+                    if(minigamecnt == 1) {
+                        Minigame1.mini1main(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (FinalComparewith.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 2) {
+                        MiniGame2.minigame2(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (Arrow.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 3) {
+                        Minigame3.mini3main(null);
+                        minigamecnt = 0;
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        y1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (game3.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
                     y1--;
@@ -178,15 +244,45 @@ class maingame {
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
                 }  else if(a[x1+1][y1].equals("\\u24BC")){
-                	minigamecnt ++;
-                	if(minigamecnt == 1) {
-                		Minigame1.mini1main(null);
-                	}else if(minigamecnt == 2) {
-                		MiniGame2.mimigame2(null);
-                	}else if(minigamecnt == 3) {
-                		Minigame3.mini3main(null);
-                		minigamecnt = 0;
-                	}
+                    minigamecnt ++;
+                    if(minigamecnt == 1) {
+                        Minigame1.mini1main(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (FinalComparewith.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 2) {
+                        MiniGame2.minigame2(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (Arrow.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 3) {
+                        Minigame3.mini3main(null);
+                        minigamecnt = 0;
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1++;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (game3.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
                     x1++;
@@ -208,15 +304,45 @@ class maingame {
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
                 } else if(a[x1-1][y1].equals("\\u24BC")){
-                	minigamecnt ++;
-                	if(minigamecnt == 1) {
-                		Minigame1.mini1main(null);
-                	}else if(minigamecnt == 2) {
-                		MiniGame2.mimigame2(null);
-                	}else if(minigamecnt == 3) {
-                		Minigame3.mini3main(null);
-                		minigamecnt = 0;
-                	}
+                    minigamecnt ++;
+                    if(minigamecnt == 1) {
+                        Minigame1.mini1main(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (FinalComparewith.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 2) {
+                        MiniGame2.minigame2(null);
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (Arrow.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }else if(minigamecnt == 3) {
+                        Minigame3.mini3main(null);
+                        minigamecnt = 0;
+                        a[x1][y1] = "\uD83D\uDFE3";
+                        x1--;
+                        a[x1][y1] = "\u2B55";
+                        cnt -= 1;
+                        if (game3.winner.equals("사람")) {
+                            playerscore += 1;
+                        } else {
+                            monsterscore += 1;
+                        }
+                        System.out.println("게임 스코어 " + playerscore + " : " + monsterscore);
+                    }
                 } else {
                     a[x1][y1] = "\uD83D\uDFE3";
                     x1--;
@@ -235,6 +361,10 @@ class maingame {
         d.DiceNum();
         int cnt = d.ran;
         while (true) {
+            if (cnt == 0) {
+                break;
+            }
+            nowboard();
             System.out.println("몬스터 플레이어 한 칸씩 이동하게 됩니다. 원하시는 방향을 입력해주세요 ex)동, 서, 남, 북");
             System.out.print("방향 입력 : ");
             direction2 = in.next();
@@ -242,7 +372,6 @@ class maingame {
                 if(y2 == 9) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
-                    
                 } else if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
                     System.out.println("금지 구역이에요!");
                     continue;
@@ -298,7 +427,7 @@ class maingame {
         }
     }
 }
-public class Practice2 {
+public class practice2 {
     public static void main(String[] args) {
         maingame a = new maingame();
         a.boardmaking();
