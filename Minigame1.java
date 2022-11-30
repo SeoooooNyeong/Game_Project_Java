@@ -46,6 +46,9 @@ class CardSelect extends Game{
         for (int i = 0; i < player2cardlist.size(); i++) {
             System.out.printf("%2d", player2cardlist.get(i));
         }
+        for (int i = 0; i < 100; i++) {
+            System.out.println();
+        }
         System.out.println();
         System.out.print("player2님, 카드를 한 장 골라주세요: ");
         temp2 = in.nextInt();
@@ -107,11 +110,11 @@ class FinalComparewith extends Game{
         System.out.println("player2의 최종점수: " + player2score);
         if(player1score < player2score) {
             System.out.println("player2가 최종 승리!");
-            winner = "사람";
+            winner = "몬스터";
         }
         else if(player1score > player2score) {
             System.out.println("player1이 최종 승리!");
-            winner = "몬스터";
+            winner = "사람";
         }
         else {
             System.out.println("무승부 입니다. 게임을 재개합니다.");
