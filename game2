@@ -52,6 +52,7 @@ class Arrow {
     }
 
     void maincode2() {
+        nextment = Scan.nextLine();
         System.out.println("player2 시작합니다!");
         try {
             System.out.println("3");
