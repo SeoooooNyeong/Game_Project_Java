@@ -114,7 +114,9 @@ class maingame {
                     if (playerheart > 100) {
                         playerheart = 100;
                     }
-                    System.out.println("현제 플레이어 체력 : " + playerheart);
+                    System.out.println("현재 플레이어 체력 : " + playerheart);
+                } else if (a[x1][y1+1].equals("\uD83D\uDFE3")) {
+                    // 인간 체력감소, 말 따로 저장해놔
                 } else {
                     a[x1][y1] = "\uD83D\uDFE3";
                     y1++;
