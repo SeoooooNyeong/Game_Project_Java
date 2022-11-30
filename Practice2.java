@@ -1,3 +1,4 @@
+package Game;
 import java.util.*;
 class maingame {
     Scanner in = new Scanner(System.in);
@@ -119,6 +120,10 @@ class maingame {
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
                     System.out.println("현재 플레이어 체력 : " + playerheart);
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    y1++;
+                    a[x1][y1] = "\u2B55";
+                    cnt -= 1;
                 } else if (a[x1][y1+1].equals("\u26AB")) {
                     // 인간 체력감소, 말 따로 저장해놔
                 } else if(a[x1][y1+1].equals("\u24BC")){
@@ -183,6 +188,10 @@ class maingame {
                         playerheart = 100;
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    y1--;
+                    a[x1][y1] = "\u2B55";
+                    cnt -= 1;
                 }  else if(a[x1][y1-1].equals("\\u24BC")){
                     minigamecnt ++;
                     if(minigamecnt == 1) {
@@ -243,6 +252,10 @@ class maingame {
                         playerheart = 100;
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    x1++;
+                    a[x1][y1] = "\u2B55";
+                    cnt -= 1;
                 }  else if(a[x1+1][y1].equals("\\u24BC")){
                     minigamecnt ++;
                     if(minigamecnt == 1) {
@@ -303,6 +316,10 @@ class maingame {
                         playerheart = 100;
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
+                    a[x1][y1] = "\uD83D\uDFE3";
+                    x1--;
+                    a[x1][y1] = "\u2B55";
+                    cnt -= 1;
                 } else if(a[x1-1][y1].equals("\\u24BC")){
                     minigamecnt ++;
                     if(minigamecnt == 1) {
@@ -372,7 +389,7 @@ class maingame {
                 if(y2 == 9) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
-                } else if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
+                } else if(a[x2][y2+1].equals("\uD83D\uDEAB") || a[x2][y2+1].equals("\u2665") || a[x2][y2+1].equals("\\u24BC")) {
                     System.out.println("금지 구역이에요!");
                     continue;
                 } else {
@@ -385,7 +402,7 @@ class maingame {
                 if(y2 == 0) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
-                } else if(a[x2][y2-1].equals("\uD83D\uDEAB")) {
+                } else if(a[x2][y2-1].equals("\uD83D\uDEAB") || a[x2][y2-1].equals("\u2665") || a[x2][y2-1].equals("\\u24BC")) {
                     System.out.println("금지 구역이에요!");
                     continue;
                 } else {
@@ -398,7 +415,7 @@ class maingame {
                 if(x2 == 9) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
-                } else if(a[x2+1][y2].equals("\uD83D\uDEAB")) {
+                } else if(a[x2+1][y2].equals("\uD83D\uDEAB") || a[x2+1][y2].equals("\u2665") || a[x2+1][y2].equals("\\u24BC")) {
                     System.out.println("금지 구역이에요!");
                     continue;
                 } else {
@@ -411,10 +428,11 @@ class maingame {
                 if(x2 == 0) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
-                } else if(a[x2-1][y2].equals("\uD83D\uDEAB")) {
+                } else if(a[x2-1][y2].equals("\uD83D\uDEAB") || a[x2-1][y2].equals("\u2665") || a[x2-1][y2].equals("\\u24BC")) {
                     System.out.println("금지 구역이에요!");
                     continue;
-                } else {
+                } 
+                else {
                     a[x2][y2] = "\uD83D\uDFE3";
                     x2--;
                     a[x2][y2] = "\u26AB";
@@ -427,7 +445,7 @@ class maingame {
         }
     }
 }
-public class practice2 {
+public class Practice2 {
     public static void main(String[] args) {
         maingame a = new maingame();
         a.boardmaking();
@@ -463,3 +481,4 @@ class Dice2 {
         }
     }
 }
+
