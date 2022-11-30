@@ -15,7 +15,7 @@ class maingame {
             }
         }
         a[0][0] = "\u2B55"; // 플레이어 말
-        a[9][9] = "\u26AB";
+        a[9][9] = "\u26AB"; // 몬스터 
         for (int i = 0; i < 10; i++) {
             int k = rand.nextInt(9)+1;
             int l = rand.nextInt(9)+1;
@@ -114,7 +114,7 @@ class maingame {
                     }
                     System.out.println("현제 플레이어 체력 : " + playerheart);
                     System.out.println("현재 플레이어 체력 : " + playerheart);
-                } else if (a[x1][y1+1].equals("\uD83D\uDFE3")) {
+                } else if (a[x1][y1+1].equals("\u26AB")) {
                     // 인간 체력감소, 말 따로 저장해놔
                 } else if(a[x1][y1+1].equals("\\u24BC")){
                 	minigamecnt ++;
@@ -124,6 +124,7 @@ class maingame {
                 		MiniGame2.mimigame2(null);
                 	}else if(minigamecnt == 3) {
                 		Minigame3.mini3main(null);
+                		minigamecnt = 0;
                 	}
                 }
                 else {
@@ -154,6 +155,7 @@ class maingame {
                 		MiniGame2.mimigame2(null);
                 	}else if(minigamecnt == 3) {
                 		Minigame3.mini3main(null);
+                		minigamecnt = 0;
                 	}
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -183,6 +185,7 @@ class maingame {
                 		MiniGame2.mimigame2(null);
                 	}else if(minigamecnt == 3) {
                 		Minigame3.mini3main(null);
+                		minigamecnt = 0;
                 	}
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -212,6 +215,7 @@ class maingame {
                 		MiniGame2.mimigame2(null);
                 	}else if(minigamecnt == 3) {
                 		Minigame3.mini3main(null);
+                		minigamecnt = 0;
                 	}
                 } else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -238,6 +242,7 @@ class maingame {
                 if(y2 == 9) {
                     System.out.println("갈 곳이 없어요!");
                     continue;
+                    
                 } else if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
                     System.out.println("금지 구역이에요!");
                     continue;
