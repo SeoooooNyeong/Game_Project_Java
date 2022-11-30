@@ -455,21 +455,27 @@ class Dice2 {
         ran = (int) ((Math.random() * 6) + 1);
         if (ran == 1) {
             System.out.println("\u2680");
+            System.out.println("1입니다");
         }
         if (ran == 2) {
             System.out.println("\u2681");
+            System.out.println("2입니다");
         }
         if (ran == 3) {
             System.out.println("\u2682");
+            System.out.println("3입니다");
         }
         if (ran == 4) {
             System.out.println("\u2683");
+            System.out.println("4입니다");
         }
         if (ran == 5) {
             System.out.println("\u2684");
+            System.out.println("5입니다");
         }
         if (ran == 6) {
             System.out.println("\u2685");
+            System.out.println("6입니다");
         }
     }
 }
