@@ -35,7 +35,6 @@ class   game3 {
 
     void start() {
         System.out.print("안녕하세요! 독을 피해 물을 마셔라! 게임에 오신 것을 환영합니다!");
-        System.out.println(poisonlength + " " + poisonheight);
         nextment = Scan.nextLine();
         System.out.println("설명이 필요하시다면 GUI창의 yes을 눌러주세요!");
 
