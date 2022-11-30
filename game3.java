@@ -23,6 +23,7 @@ class   game3 {
     static int player1gamescore = 0;
 
     static int player2gamescore = 0;
+    static String winner;
     String explainaion = "\n";
     void boxmaking() {
         for (int i = 0; i < 9; i++) {
@@ -242,8 +243,10 @@ class   game3 {
     void whowin() {
         if (player1score > player2score) {
             System.out.println("player1이 이겼습니다!");
+            winner = "사람";
         } else {
             System.out.println("player2가 이겼습니다!");
+            winner = "몬스터";
         }
     }
 
@@ -260,7 +263,7 @@ class   game3 {
 
 class Detail2 extends JFrame {
     Detail2() {
-        setTitle("화살 게임");
+        setTitle("물마시기 게임");
         setSize(200, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p = new JPanel();
@@ -285,8 +288,8 @@ class Detail2 extends JFrame {
     }
 }
 
-public class game3modify {
-    public static void main(String[] args) {
+public class Minigame3 {
+    public static void mini3main(String[] args) {
         Scanner Scan = new Scanner(System.in);
         Detail2 d = new Detail2();
         game3 a = new game3();
