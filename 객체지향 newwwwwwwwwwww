@@ -117,9 +117,11 @@ class maingame {
             a[x1][y1] = "\u2B55";
             if (FinalComparewith.winner.equals("사람")) {
                 playerscore += 1;
+                playerheart += 15;
             } else {
                 monsterscore += 1;
                 playerheart -= 30;
+                heartzero();
             }
         }else if(minigamecnt == 2) {
             MiniGame2.minigame2(null);
@@ -128,9 +130,11 @@ class maingame {
             a[x1][y1] = "\u2B55";
             if (Arrow.winner.equals("사람")) {
                 playerscore += 1;
+                playerheart += 15;
             } else {
                 monsterscore += 1;
                 playerheart -= 30;
+                heartzero();
             }
         }else if(minigamecnt == 3) {
             Minigame3.mini3main(null);
@@ -140,9 +144,11 @@ class maingame {
             a[x1][y1] = "\u2B55";
             if (game3.winner.equals("사람")) {
                 playerscore += 1;
+                playerheart += 15;
             } else {
                 monsterscore += 1;
                 playerheart -= 30;
+                heartzero();
             }
         }
         heartzero();
