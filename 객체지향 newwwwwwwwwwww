@@ -10,8 +10,8 @@ class maingame {
     int playerscore;
     int monsterscore;
     int minigamecnt;
-    String direction1;
-
+    String direction1 = "";
+    String maljajang;
     int cnt;
     void boardmaking() {
         for (int i = 0; i < 10; i++) {
@@ -102,10 +102,13 @@ class maingame {
             playerheart = 100;
         }
         System.out.println("현제 플레이어 체력 : " + playerheart);
-        System.out.println("현재 플레이어 체력 : " + playerheart);
+        a[x1][y1] = "\uD83D\uDFE3";
+        whatplusminus();
+        a[x1][y1] = "\u2B55";
+        cnt -= 1;
     }
 
-    void minigamestart() {
+    void minigamestart() {;
         minigamecnt ++;
         if(minigamecnt == 1) {
             Minigame1.mini1main(null);
@@ -147,22 +150,31 @@ class maingame {
         }
     }
 
+    void peoplemonstermeeting() {
+        playerheart -= 10;
+        a[x1][y1] = "\uD83D\uDFE3";
+        whatplusminus();
+        a[x1][y1] = "\u2B55";
+        cnt -= 1;
+        System.out.println("몬스터와 마주쳐 용사의 체력이 10 감소했어요...");
+        System.out.println("남은 체력 : " + playerheart);
+    }
+
     void whatplusminus() {
         if (direction1.equals("동")) {
             y1++;
         } else if (direction1.equals("서")) {
             y1--;
         } else if (direction1.equals("남")) {
-            x1--;
-        } else if (direction1.equals("북")) {
             x1++;
+        } else if (direction1.equals("북")) {
+            x1--;
         }
     }
 
 
     void peopleplayermoving() {
         int minigamecnt = 0;
-        String direction1 = "";
         Dice2 d = new Dice2();
         d.DiceNum();
         int cnt = d.ran;
@@ -182,7 +194,7 @@ class maingame {
                 }else if (a[x1][y1+1].equals("\u2665")) {
                     heartplus();
                 } else if (a[x1][y1+1].equals("\u26AB")) {
-                    // 인간 체력감소, 말 따로 저장해놔
+                    peoplemonstermeeting();
                 } else if(a[x1][y1+1].equals("\u24BC")){
                     minigamestart();
                 }
@@ -201,7 +213,9 @@ class maingame {
                     continue;
                 }else if (a[x1][y1-1].equals("\u2665")) {
                     heartplus();
-                }  else if(a[x1][y1-1].equals("\u24BC")){
+                } else if (a[x1][y1+1].equals("\u26AB")) {
+                    peoplemonstermeeting();
+                } else if(a[x1][y1-1].equals("\u24BC")){
                     minigamestart();
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -216,7 +230,9 @@ class maingame {
                     System.out.println("금지 구역이에요!");
                 } else if (a[x1+1][y1].equals("\u2665")) {
                     heartplus();
-                }  else if(a[x1+1][y1].equals("\u24BC")){
+                } else if (a[x1][y1+1].equals("\u26AB")) {
+                    peoplemonstermeeting();
+                } else if(a[x1+1][y1].equals("\u24BC")){
                     minigamestart();
                 }else {
                     a[x1][y1] = "\uD83D\uDFE3";
@@ -231,6 +247,8 @@ class maingame {
                     System.out.println("금지 구역이에요!");
                 } else if (a[x1-1][y1].equals("\u2665")) {
                     heartplus();
+                } else if (a[x1-1][y1].equals("\u26AB")) {
+                    peoplemonstermeeting();
                 } else if(a[x1-1][y1].equals("\u24BC")){
                     minigamestart();
                 } else {
@@ -261,8 +279,10 @@ class maingame {
             if(direction2.equals("동")) {
                 if(y2 == 9) {
                     System.out.println("갈 곳이 없어요!");
-                } else if(a[x2][y2+1].equals("\uD83D\uDEAB")) {
+                } else if(a[x2][y2+1].equals("\uD83D\uDEAB") || a[x2][y2+1].equals("\u2665") || a[x2][y2+1].equals("\u24BC")) {
                     System.out.println("금지 구역이에요!");
+                } else if (a[x2][y2+1].equals("\u2B55")) {
+                    peoplemonstermeeting();
                 } else {
                     a[x2][y2] = "\uD83D\uDFE3";
                     y2++;
@@ -272,8 +292,10 @@ class maingame {
             } else if(direction2.equals("서")){
                 if(y2 == 0) {
                     System.out.println("갈 곳이 없어요!");
-                } else if(a[x2][y2-1].equals("\uD83D\uDEAB")) {
+                } else if(a[x2][y2-1].equals("\uD83D\uDEAB") || a[x2][y2-1].equals("\u2665") || a[x2][y2-1].equals("\u24BC")) {
                     System.out.println("금지 구역이에요!");
+                } else if (a[x2][y2-1].equals("\u2B55")) {
+                    peoplemonstermeeting();
                 } else {
                     a[x2][y2] = "\uD83D\uDFE3";
                     y2--;
@@ -283,8 +305,10 @@ class maingame {
             } else if(direction2.equals("남")) {
                 if(x2 == 9) {
                     System.out.println("갈 곳이 없어요!");
-                } else if(a[x2+1][y2].equals("\uD83D\uDEAB")) {
+                } else if(a[x2+1][y2].equals("\uD83D\uDEAB") || a[x2+1][y2].equals("\u2665") || a[x2+1][y2].equals("\u24BC")) {
                     System.out.println("금지 구역이에요!");
+                } else if (a[x2+1][y2].equals("\u2B55")) {
+                    peoplemonstermeeting();
                 } else {
                     a[x2][y2] = "\uD83D\uDFE3";
                     x2++;
@@ -294,8 +318,10 @@ class maingame {
             }else if(direction2.equals("북")) {
                 if(x2 == 0) {
                     System.out.println("갈 곳이 없어요!");
-                } else if(a[x2-1][y2].equals("\uD83D\uDEAB")) {
+                } else if(a[x2-1][y2].equals("\uD83D\uDEAB") || a[x2-1][y2].equals("\u2665") || a[x2-1][y2].equals("\u24BC")) {
                     System.out.println("금지 구역이에요!");
+                } else if (a[x2-1][y2].equals("\u2B55")) {
+                    peoplemonstermeeting();
                 } else {
                     a[x2][y2] = "\uD83D\uDFE3";
                     x2--;
