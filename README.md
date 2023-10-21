@@ -1,5 +1,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=03429a&height=150&section=header&text=GAME_PROJECT&fontSize=50&fontColor=ffffff" />
 
+
+[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://youtu.be/9qptE6XTPzs)
+
+
+
 # **목차**
 -[개요](#개요)
   
