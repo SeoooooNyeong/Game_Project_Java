@@ -4,7 +4,7 @@ JAVA
 -------------
 
 
-<img src="https://capsule-render.vercel.app/api?type=Soft&color=03429a&height=150&section=header&text=GAME_PROJECT&fontSize=50&fontColor=white" />
+<img src="https://capsule-render.vercel.app/api?type=Soft&color=03429a&height=150&section=header&text=GAME_PROJECT&fontSize=50&fontColor=ffffff" />
 
 ## 목차
   -[개요](#개요)
