@@ -59,7 +59,8 @@
 
 
 ### **미니게임1** 
-![image](https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/f40fbee4-48bb-4615-b931-72210edd2e7e)
+![image](https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/d759f348-5943-48a8-81c6-f33f274f729a)
+
 
 ### **미니게임2**
 ![image](https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/65158792-e89d-41ea-969b-f125b04bed3a)
