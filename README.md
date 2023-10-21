@@ -1,6 +1,6 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=03429a&height=150&section=header&text=GAME_PROJECT&fontSize=50&fontColor=ffffff" />
 
-<a herf="https://youtu.be/9qptE6XTPzs"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&link=https://youtu.be/9qptE6XTPzs"></a>
+<a href="https://youtu.be/9qptE6XTPzs"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white&link=https://youtu.be/9qptE6XTPzs"></a>
 
 
 
