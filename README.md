@@ -59,10 +59,13 @@
 
 
 ### **미니게임1** 
-<img src = "./img/2_8.jpeg" width="40%"> <img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/5504719d-1aab-41d8-8d0a-68637194cfc5" width="650px">
+
+<img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/5504719d-1aab-41d8-8d0a-68637194cfc5" width="650px">
 
 ### **미니게임2**
-<img src = "./img/2_8.jpeg" width="40%"> <img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/c05ad5cf-1e7a-4143-8ed1-64cb92eb5c18" width="650px">
+
+<img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/c05ad5cf-1e7a-4143-8ed1-64cb92eb5c18" width="650px">
 
 ### **미니게임3**
-<img src = "./img/2_8.jpeg" width="40%"> <img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/11b9bb2a-0152-4b45-9d6c-1d2375eb3d56" width="650px">
+
+<img src = "https://github.com/SeoooooNyeong/Game_Project_Java/assets/113419106/11b9bb2a-0152-4b45-9d6c-1d2375eb3d56" width="650px">
